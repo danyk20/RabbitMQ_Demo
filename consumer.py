@@ -37,9 +37,9 @@ def process_mqtt_message(topic_name: str = 'test') -> None:
 
 
 try:
-    if sys.argv[1] == 'amqp':
+    if sys.argv[1].upper() == 'AMQP':
         process_amqp_message()
-    elif sys.argv[1] == 'mqtt':
+    elif sys.argv[1].upper() == 'MQTT':
         process_mqtt_message()
 except KeyboardInterrupt:
     print('Interrupted')
