@@ -1,4 +1,22 @@
-# Instructions
+# RabbitMQ Example
+
+## Prerequisites
+
+- Running RabbitMQ
+- Activated plugin
+   ```shell
+   rabbitmq-plugins enable rabbitmq_mqtt
+   ```
+- Opened ports in Firewall on RabbitMQ hosting machine
+    ```shell
+    firewall-cmd --permanent --add-port=1883/tcp
+    firewall-cmd --permanent --add-port=5672/tcp
+    firewall-cmd --permanent --add-port=15672/tcp
+    systemctl restart firewalld
+    firewall-cmd --list-all
+    ```
+
+## Instructions
 
 1. Create `.env` file
    ```text
@@ -8,11 +26,11 @@
     ```shell
     pipenv install
     ```
-3. Publish a message—first string argument from command line will be sent to the broker
+3. Consume a message—print all messages from the queue/topic
     ```shell
-    pipenv run python3 producer.py <your_message>
+    pipenv run python3 consumer.py <protocol>
     ```
-4. Consume a message—print all messages from the queue
+4. Publish a message—first string argument from command line will be sent to the broker
     ```shell
-    pipenv run python3 consumer.py
+    pipenv run python3 producer.py <protocol> <your_message>
     ```
